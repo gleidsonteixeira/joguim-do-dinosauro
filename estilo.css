@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #DEDEDE;
+}
+
+#tela{
+    width: 600px;
+    height: 300px;
+    background-color: #FFF;
+    position: relative;
+}
+
+#tela .boneco{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+
+#tela .boneco.pular{
+    animation: pular 500ms ease-in infinite;
+}
+
+#tela .obstaculo{
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+#tela .obstaculo.ativo{
+    animation: obstaculo 800ms linear infinite;
+}
+
+@keyframes obstaculo {
+    from{
+        right: -50px;
+    }
+    to{
+        right: 100%;
+    }
+}
+
+@keyframes pular {
+    0%{
+        bottom: 0;
+    }
+    50%{
+        bottom: 70px;
+    }
+    100%{
+        bottom: 0;
+    }
+}

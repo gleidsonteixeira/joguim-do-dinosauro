@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joguim</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div id="tela">
+        <div class="boneco"></div>
+        <div class="obstaculo"></div>
+        <div class="pontos">0</div>
+    </div>
+
+    <script>
+
+        let tela = document.querySelector("#tela");
+        let boneco = document.querySelector(".boneco");
+        let obstaculo = document.querySelector(".obstaculo");
+        let pontuacao = document.querySelector(".pontos");
+        let pontos = 0;
+        
+        window.addEventListener("keydown", function(e){
+            e.stopImmediatePropagation();
+            boneco.classList.add("pular");
+            setTimeout(function(){
+                boneco.classList.remove("pular");
+            }, 550)
+        });
+        
+        tela.addEventListener("click", function(){
+            obstaculo.classList.add("ativo");
+        })
+        
+        tela.addEventListener("mouseleave", function(){
+            window.location.reload();
+        })
+
+        let run = setInterval(function(){
+            let alturaDoPulo = tela.offsetHeight - boneco.offsetTop - boneco.offsetHeight;
+            // Condição de derrota
+            if((obstaculo.offsetLeft < 60 && obstaculo.offsetLeft > 10) && alturaDoPulo < obstaculo.offsetHeight){
+                boneco.style.bottom = `${alturaDoPulo}px`
+                obstaculo.style.left = `${obstaculo.offsetLeft}px`;
+                obstaculo.classList.remove("ativo");
+                clearInterval(run);
+            }else{
+            }
+        }, 1);
+        
+        function marcarPontos(){
+            pontos = pontos + 100;
+            pontuacao.innerHTML = pontos;
+        }
+
+    </script>
+
+</body>
+</html>
